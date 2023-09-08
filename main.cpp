@@ -17,9 +17,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	int PosY = 48;
 	int radius = 16;
 	
-	int posX = 25;
-	int posY = 25;
-	int rad = 16;
+	int PosX2 = -782;
+	int PosY2 = -806;
 
 	//左上
 	int playerLeftTopX;
@@ -38,24 +37,10 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	int speedY;
 	int speedTmp = 2;
 	
-	int enemyLeftLeftTopX;
-	int enemyLeftLeftTopY;
-
-	int enmeyRightTopX;
-	int enmeyRightTopY;
-
-	int enemyLeftBottomX;
-	int enemyLeftBottomY;
-
-	int enemyRightBottomX;
-	int enemyRightBottomY;
-
-	int SpeedX;
-	int SpeedY;
-	int SpeedTmp = 2;
+	
 	////ブロック画像の読み込み
 	int block = Novice::LoadTexture("./block.png");
-	
+	int Handle = Novice::LoadTexture("./tyuuou.png");
 	//ブロックサイズの設定
 	const int blockSize = 32;
 
@@ -95,6 +80,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		
 	};
 
+
 	// ウィンドウの×ボタンが押されるまでループ
 	while (Novice::ProcessMessage() == 0) {
 		// フレームの開始
@@ -122,17 +108,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		speedX = 0;
 		speedY = 0;
 
-		enemyLeftLeftTopX = (posX - rad)/32;
-		enemyLeftLeftTopY = (posY - rad)/32;
-
-		int enmeyRightTopX = (PosX - rad) / 32;
-		int enmeyRightTopY = (PosY - rad) / 32;
-
-		int enemyLeftBottomX = (posX - rad) / 32;
-		int enemyLeftBottomY = (posY - rad) / 32;
-
-		int enemyRightBottomX = (posX - rad) / 32;
-		int enemyRightBottomY = (posY - rad) / 32;
+		
 		
 		if (keys[DIK_D])
 		{
@@ -183,14 +159,16 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		///
 		/// ↓描画処理ここから
 		///
-		for (int y = 0;y < 25;y++) {
-			for (int x = 0;x < 25;x++) {
+		for (int y = 0; y < 25; y++) {
+			for (int x = 0; x < 25; x++) {
 				if (map[y][x] == BLOCK) {
 					Novice::DrawSprite(x * blockSize, y * blockSize, block, 1.0f, 1.0f, 0.0f, WHITE);
 				}
 			}
 		}
-		Novice::DrawEllipse(PosX, PosY, radius, radius, 0.0f, WHITE, kFillModeSolid);
+		Novice::DrawSprite(PosX2 + PosX, PosY2 + PosY, Handle, 1.0f, 1.0f, 0.0f, WHITE);
+		Novice::DrawEllipse(PosX, PosY, radius, radius, 0.0f, RED, kFillModeSolid);
+
 		///
 		/// ↑描画処理ここまで
 		///
