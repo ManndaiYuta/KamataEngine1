@@ -13,10 +13,14 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	char keys[256] = {0};
 	char preKeys[256] = {0};
 
-	int PosX = 64;
-	int PosY = 64;
+	int PosX = 48;
+	int PosY = 48;
 	int radius = 16;
 	
+	int posX = 25;
+	int posY = 25;
+	int rad = 16;
+
 	//左上
 	int playerLeftTopX;
 	int playerLeftTopY;
@@ -33,10 +37,28 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	int speedX;
 	int speedY;
 	int speedTmp = 2;
+	
+	int enemyLeftLeftTopX;
+	int enemyLeftLeftTopY;
+
+	int enmeyRightTopX;
+	int enmeyRightTopY;
+
+	int enemyLeftBottomX;
+	int enemyLeftBottomY;
+
+	int enemyRightBottomX;
+	int enemyRightBottomY;
+
+	int SpeedX;
+	int SpeedY;
+	int SpeedTmp = 2;
 	////ブロック画像の読み込み
 	int block = Novice::LoadTexture("./block.png");
+	
 	//ブロックサイズの設定
 	const int blockSize = 32;
+
 	//
 	
 	int map[25][25] =
@@ -70,6 +92,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	enum MapInfo {
 		NOME,//0
 		BLOCK//1
+		
 	};
 
 	// ウィンドウの×ボタンが押されるまでループ
@@ -98,8 +121,19 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 		speedX = 0;
 		speedY = 0;
-		/*X = PosX / 32;
-		Y = PosY / 32;*/
+
+		enemyLeftLeftTopX = (posX - rad)/32;
+		enemyLeftLeftTopY = (posY - rad)/32;
+
+		int enmeyRightTopX = (PosX - rad) / 32;
+		int enmeyRightTopY = (PosY - rad) / 32;
+
+		int enemyLeftBottomX = (posX - rad) / 32;
+		int enemyLeftBottomY = (posY - rad) / 32;
+
+		int enemyRightBottomX = (posX - rad) / 32;
+		int enemyRightBottomY = (posY - rad) / 32;
+		
 		if (keys[DIK_D])
 		{
 			playerRightTopX = (PosX + radius - 1 + speedTmp) / 32;
@@ -141,7 +175,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 		PosX += speedX;
 		PosY += speedY;
-
+		
 		///
 		/// ↑更新処理ここまで
 		///
